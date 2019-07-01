@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign to Google Account</title>
+    <title>Login Game Edukasi</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/loginstyle.css">
 </head>
@@ -9,25 +9,49 @@
 <div class="container" style="margin-top: 100px">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <h1 class="text-center login-title">Login Kuis Online</h1>
+            <h1 class="text-center login-title">Login Game Edukasi</h1>
+           <div id="pesan"></div>
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                     alt="">
-                <form class="form-signin" action="<?php echo base_url() ?>index.php/admin">
-                <input type="text" class="form-control" placeholder="Email" required autofocus>
-                <input type="password" class="form-control" placeholder="Password" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                <form class="form-signin">
+                <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+                <input type="password" id="password" class="form-control" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" type="button" id="login">
                     Sign in</button>
-                <label class="checkbox pull-left">
-                    <input type="checkbox" value="remember-me">
-                    Remember me
-                </label>
-                <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
                 </form>
             </div>
-            <a href="#" class="text-center new-account">Create an account </a>
         </div>
     </div>
 </div>
 </body>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery-3.1.0.min.js"></script>
+<script>
+    $("#login").click(function(event){
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var url = "<?php echo base_url() ?>/index.php/Login/login_aksi";
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:{username,password},
+            success:function(response){
+               if(response==="success"){
+                $("#pesan").html(" <div class='alert alert-"+response+"'><strong>Success!</strong> Selamat Login Berhasil</div>")
+                setTimeout(() => {
+                    window.location="Admin"
+                }, 1000);
+               }else{
+                $("#pesan").html(" <div class='alert alert-"+response+"'><strong>Gagal!</strong> Pastikan Data Sudah Benar</div>")
+                setTimeout(() => {
+                    $("#pesan").html("")
+                }, 1000);
+               }
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+            }
+        })
+    })
+</script>
 </html>

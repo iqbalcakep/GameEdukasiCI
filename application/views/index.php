@@ -1,4 +1,7 @@
 <!DOCTYPE HTML>
+<?php $sesData = $this->session->userdata('datadiri');
+      $nama = $sesData["nama"];
+?>
 <html>
 	<head>
 		<title>Kuis Online</title>
@@ -32,7 +35,7 @@
 										<span class="symbol">
 											<img src="<?php echo base_url() ?>assets/images/logo2.png" alt="Title" />
 										</span>
-										<span class="title">Kuis Online</span>
+										<span class="title">Kuis Online (<span id="namaSess"><?= $nama; ?></span>)<a href="<?= base_url()?>/index.php/Home/destroy">X Reset</a></span>
 									</a>
 								</div>
 							</header>
@@ -218,6 +221,33 @@
 			</footer>
 		</section>
 
+	<!-- Modall -->
+
+		<div id="setupModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Tambahkan Data Anda Terlebih dahulu sebelum masuk Game Ini</h4>
+				</div>
+				<div class="modal-body">
+					<p>Masukkan Nama dan Kelas Anda</p>
+					<form id="formAdd" method="post">
+						<div class="form-group">
+							<input type="text" required class="form-control" id="nama" name="nama" placeholder="Name">
+						</div>
+						<div class="form-group">
+							<input type="text" required class="form-control" id="kelas" name="kelas" placeholder="Kelas">
+						</div>
+						<button type="submit" class="btn btn-primary">Masuk</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- end Modal -->
+
 	<!-- Scripts -->
 
 		<script src="<?php echo base_url() ?>assets/js/jquery-3.1.0.min.js"></script>
@@ -236,6 +266,33 @@
 			        }, 700);
 			    });
 			}
+		</script>
+
+		<script type="text/javascript">
+		$(document).ready(function(){
+			var nama = "<?php echo $nama; ?>"
+			if(nama==="" || nama === "undefined"){
+				$("#setupModal").modal('show');
+			}
+			$("#formAdd").submit(function(e){
+				e.preventDefault();
+				$.ajax({
+					url:"<?php echo base_url() ?>index.php/Home/setData",
+					type:"post",
+					data:new FormData(this),
+					processData:false,
+                    contentType:false,
+					success:function(response){
+						console.log(response)
+						if(response==="success"){
+							$("#setupModal").modal('hide');
+							$("#namaSess").html($("#nama").val());
+						}
+					}
+				})
+			})
+		});
+
 		</script>
 		
 	</body>
