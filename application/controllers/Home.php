@@ -10,7 +10,8 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('index');
+		$data["tipe_soal"] = $this->db->query("select * from tipe_soal")->result();
+		$this->load->view('index',$data);
 	}
 
 	public function setData(){

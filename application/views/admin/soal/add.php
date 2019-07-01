@@ -285,30 +285,62 @@
             $("#saved").html("");
             $("#id_tipe").val(isi);
             $("#id_tipe2").val(isi);
-            if(isi==="1" || isi==="2"){
-                $("#saved").append("<h4>Soal Kuis" +isi+"</h4>")
-                $("#isian").hide();
-                $("#pilihan_ganda").show();
-                $("#cerita").html("<option>Pilih Subjek Cerita</option>");
-                var pilihcerita = "<?php echo base_url() ?>/index.php/Soal/Listcerita";
-                $.ajax({
-                    url:pilihcerita,
-                    type:"GET",
-                    dataType:"json",
-                    success:function(response){
-                        response.map(d=>{
-                            $("#cerita").append("<option value='"+d.id_cerita+"'>"+d.tema+"</option>");
-                        })
+            $.ajax({
+                url:"<?= base_url()?>/index.php/Soal/pilihMetode/"+isi,
+                type:"GET",
+                dataType:"json",
+                success:function(response){
+                    if(response[0].metode==="pg"){
+                            $("#saved").append("<h4>Soal Kuis "+response[0].tipe+"</h4>")
+                            $("#isian").hide();
+                            $("#pilihan_ganda").show();
+                            $("#cerita").html("<option>Pilih Subjek Cerita</option>");
+                            var pilihcerita = "<?php echo base_url() ?>/index.php/Soal/Listcerita";
+                            $.ajax({
+                                url:pilihcerita,
+                                type:"GET",
+                                dataType:"json",
+                                success:function(response){
+                                    response.map(d=>{
+                                        $("#cerita").append("<option value='"+d.id_cerita+"'>"+d.tema+"</option>");
+                                    })
+                                }
+                            })
+                    }else if(response[0].metode==="isian"){
+                            $("#saved").append("<h4>Soal Kuis "+response[0].tipe+"</h4>")
+                            $("#isian").show();
+                            $("#pilihan_ganda").hide();
+                    }else{
+                            $("#isian").hide();
+                            $("#pilihan_ganda").hide();
                     }
-                })
-            }else if(isi==="3" || isi==="4"){
-                $("#saved").append("<h4>Soal Kuis" +isi+"</h4>")
-                $("#isian").show();
-                $("#pilihan_ganda").hide();
-            }else{
-                $("#isian").hide();
-                $("#pilihan_ganda").hide();
-            }
+                }
+            })
+
+            // if(isi==="1" || isi==="2"){
+            //     $("#saved").append("<h4>Soal Kuis" +isi+"</h4>")
+            //     $("#isian").hide();
+            //     $("#pilihan_ganda").show();
+            //     $("#cerita").html("<option>Pilih Subjek Cerita</option>");
+            //     var pilihcerita = "<?php echo base_url() ?>/index.php/Soal/Listcerita";
+            //     $.ajax({
+            //         url:pilihcerita,
+            //         type:"GET",
+            //         dataType:"json",
+            //         success:function(response){
+            //             response.map(d=>{
+            //                 $("#cerita").append("<option value='"+d.id_cerita+"'>"+d.tema+"</option>");
+            //             })
+            //         }
+            //     })
+            // }else if(isi==="3" || isi==="4"){
+            //     $("#saved").append("<h4>Soal Kuis" +isi+"</h4>")
+            //     $("#isian").show();
+            //     $("#pilihan_ganda").hide();
+            // }else{
+            //     $("#isian").hide();
+            //     $("#pilihan_ganda").hide();
+            // }
         }
 
         openCerita=()=>{

@@ -112,6 +112,11 @@ class Soal extends CI_Controller {
 			echo "success";
 	}
 
+	public function pilihMetode($id){
+		$data = $this->db->query("select * from tipe_soal where id_tipe = $id")->result();
+		echo json_encode($data);
+	}
+
 	public function updateSetting(){
 		$jumlah = $this->db->query("select * from setting inner join tipe_soal on setting.id_tipe = tipe_soal.id_tipe ")->num_rows();
 		for($i=1;$i<=$jumlah;$i++){

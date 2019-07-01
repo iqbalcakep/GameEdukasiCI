@@ -35,7 +35,7 @@
 										<span class="symbol">
 											<img src="<?php echo base_url() ?>assets/images/logo2.png" alt="Title" />
 										</span>
-										<span class="title">Kuis Online (<span id="namaSess"><?= $nama; ?></span>)<a href="<?= base_url()?>/index.php/Home/destroy">X Reset</a></span>
+										<span class="title">Kuis Online<br>(<span id="namaSess"><?= $nama; ?></span>)<a href="<?= base_url()?>/index.php/Home/destroy">X Reset</a></span>
 									</a>
 								</div>
 							</header>
@@ -65,20 +65,21 @@
 				</div>
 				<div class="tiles">
 					<div class="row">
+					<?php foreach($tipe_soal as $v){ ?>
 						<div class="col-md-6 col-xs-12">
 							<div class="a">
-								<a href="#test-popup-1" class="open-popup-link">
+								<a href="#test-popup-<?= $v->id_tipe;?>" class="open-popup-link">
 									<img src="<?php echo base_url() ?>assets/images/b.png" class="img-responsive" alt="Responsive image">
 									<div class="img-hover glass">
 										<div class="c-table">
 											<div class="ct-cell">
-												<h3 class="img-title">Kuis 1</h3>
+												<h3 class="img-title"><?= $v->tipe?></h3>
 											</div>
 										</div>
 									</div>
 								</a>
 							</div>
-							<div id="test-popup-1" class="white-popup mfp-hide">
+							<div id="test-popup-<?= $v->id_tipe;?>" class="white-popup mfp-hide">
 							  	<div class="container-fluid">
 									<div class="row">
 										<div class="pop-up-color">
@@ -87,10 +88,10 @@
 											</div>
 											<div class="col-md-4">
 												<div>
-													<h2 class="popup-head">Kuis 1</h2>
+													<h2 class="popup-head"><?= $v->tipe;?></h2>
 												</div>
 												<div>
-													<p class="popup-parapraph">Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit a amet nisi is a euismod sed cursus arcu elementum and ipsum arcu vivamus is quis venenatis orci and nullam dolore. Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod still amet nisi aliqua.Eas Lorem ipsum dolor sit amet.</p>
+													<p class="popup-parapraph"><?= $v->deskripsi;?></p>
 												</div>
 											</div>
 										</div>
@@ -98,7 +99,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-xs-12">
+					<?php } ?>
+						<!-- <div class="col-md-6 col-xs-12">
 							<div class="a">
 								<a href="#test-popup-2" class="open-popup-link">
 									<img src="<?php echo base_url() ?>assets/images/b.png" class="img-responsive" alt="Responsive image">
@@ -198,7 +200,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
