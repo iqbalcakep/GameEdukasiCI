@@ -18,6 +18,7 @@ class Soal extends CI_Controller {
 	public function index()
 	{
 		$data["setting"] = $this->db->query("select * from setting inner join tipe_soal on setting.id_tipe = tipe_soal.id_tipe ")->result();
+		$data["soal"] = $this->db->query("select * from soal")->result();
 		$this->load->view('admin/soal/index',$data);
 	}
 

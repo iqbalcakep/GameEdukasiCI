@@ -12,6 +12,7 @@
     <link href="<?php echo base_url() ?>assets/admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/datatable/css/jquery.dataTables.min.css">
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -36,12 +37,48 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-block">
-                            <div class="text-center">
-                                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#settingModal">
+                                <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#settingModal">
                                     Setting Soal</a>
-                                    <a href="<?= base_url() ?>/index.php/Soal/add" class="btn btn-default btn-rounded mb-4">
-                                     Tambah Soal</a>
-                            </div>
+                                <a href="<?= base_url() ?>/index.php/Soal/add" class="btn btn-success btn-rounded mb-4">
+                                    Tambah Soal</a>
+                                <div class="table-responsive">
+                                    <table class="table" id="example">
+                                        <thead>
+                                            <tr>
+                                                <th>Soal</th>
+                                                <th>Cerita</th>
+                                                <th>Tipe</th>
+                                                <th>Video</th>
+                                                <th>Gambar</th>
+                                                <th>Text</th>
+                                                <th>Pilihan A</th>
+                                                <th>Pilihan B</th>
+                                                <th>Pilihan C</th>
+                                                <th>Pilihan D</th>
+                                                <th>Jawaban</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <?php foreach ($soal as $data) : ?>
+                                            <tr>
+                                                <td><?php echo $data->id_soal ?></td>
+                                                <td><?php echo $data->id_cerita ?></td>
+                                                <td><?php echo $data->id_tipe ?></td>
+                                                <td><?php echo $data->video ?></td>
+                                                <td><?php echo $data->gambar ?></td>
+                                                <td><?php echo $data->text ?></td>
+                                                <td><?php echo $data->a ?></td>
+                                                <td><?php echo $data->b ?></td>
+                                                <td><?php echo $data->c ?></td>
+                                                <td><?php echo $data->d ?></td>
+                                                <td><?php echo $data->jawaban ?></td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                        </tbody>
+
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -49,8 +86,8 @@
             </div>
             <footer class="footer"> © 2019 kuis online </footer>
         </div>
-    
     </div>
+
 
     <div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
@@ -84,6 +121,14 @@
     <script src="<?php echo base_url() ?>assets/admin/js/sidebarmenu.js"></script>
     <script src="<?php echo base_url() ?>assets/admin/js/custom.min.js"></script>
     
+    <script type="text/javascript" language="javascript" src="<?php echo base_url() ?>assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+    
+    </script>
 </body>
 
 </html>

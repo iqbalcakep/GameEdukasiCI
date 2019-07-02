@@ -226,26 +226,26 @@
 	<!-- Modall -->
 
 		<div id="setupModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Tambahkan Data Anda Terlebih dahulu sebelum masuk Game Ini</h4>
-				</div>
-				<div class="modal-body">
-					<p>Masukkan Nama dan Kelas Anda</p>
-					<form id="formAdd" method="post">
-						<div class="form-group">
-							<input type="text" required class="form-control" id="nama" name="nama" placeholder="Name">
-						</div>
-						<div class="form-group">
-							<input type="text" required class="form-control" id="kelas" name="kelas" placeholder="Kelas">
-						</div>
-						<button type="submit" class="btn btn-primary">Masuk</button>
-					</form>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Tambahkan Data Anda Terlebih dahulu sebelum masuk Game Ini</h4>
+					</div>
+					<div class="modal-body">
+						<p>Masukkan Nama dan Kelas Anda</p>
+						<form id="formAdd" method="post">
+							<div class="form-group">
+								<input type="text" required class="form-control" id="nama" name="nama" placeholder="Name">
+							</div>
+							<div class="form-group">
+								<input type="text" required class="form-control" id="kelas" name="kelas" placeholder="Kelas">
+							</div>
+							<button type="submit" class="btn btn-primary">Masuk</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 
 	<!-- end Modal -->

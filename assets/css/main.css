@@ -33,6 +33,54 @@ pre {
 	border-radius: 10px;
 }
 
+.soal{
+	display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 2px solid #f5f5f5;
+    padding: 10px;
+}
+
+.pertanyaan{
+	display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+.gambar{
+	display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    padding: 10px;
+}
+
+.gambar img{
+	width: 500px;
+}
+
+.video{
+	display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    padding: 5px;
+}
+
+.video video{
+	 width:500px;
+}
+
 .inner {
     /*border-bottom: 1px solid #f2f2f2;*/
 }
@@ -104,8 +152,6 @@ pre {
 }
 
 .form-control {
-    border: none;
-    box-shadow: none;
     border-bottom: 1px solid #adadad;
     border-radius: 0px;
     padding: 15px;
@@ -365,6 +411,12 @@ img.img-responsive {
     .btn-fit {
         padding: 12px 90px;
     }
+    .video video{
+		 width:100%;
+	}
+/*    .gambar img{
+		width: 300px;
+	}*/
 }
 .btn-fit-small {
 	background-color: #333;
@@ -456,6 +508,12 @@ button[disabled], html input[disabled] {
     .btn-action-small-white-2 {
         padding: 12px 100px;
     }
+    .gambar{
+		display: block;
+	    padding: 9.5px;
+	    margin: 0 0 10px;
+	    padding: 10px;
+	}
 }
 .btn-send-2 {
 	padding: 18px 60px;
@@ -922,3 +980,4 @@ textarea#message {
 	padding-right: 25px;
 	padding-left: 25px;
 }
+
