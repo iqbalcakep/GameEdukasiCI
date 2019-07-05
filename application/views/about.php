@@ -42,7 +42,7 @@
 								<ul>
 									<li><a href="<?php echo base_url() ?>">Home</a></li>
 									<li><a href="<?php echo base_url() ?>index.php/about">About Us</a></li>
-									<li><a href="<?php echo base_url() ?>index.php/login">Login</a></li>
+									<!-- <li><a href="<?php echo base_url() ?>index.php/login">Login</a></li> -->
 								</ul>
 							</nav>
 						</div>
@@ -82,24 +82,14 @@
 							<img src="<?php echo base_url()?>assets/images/8.jpg" class="img-responsive" alt="Responsive image"/>
 						</div>
 						<div class="col-md-8">
-							<p class="image-text-text">Lorem Ipsum available, but the majority have suffered This alteration in some form, by injected is a humour, or randomised words which don’t look even sligh is made  believable. If  to use and yammi passage of Lorem Ipsum, you need to be sure there isn’t by pioneer designer anything embarrassing hidden in the middle of text.<br><br>
-							Lorem Ipsum available, but the majority have suffered This alteration in some form, by injected is a humour, or randomised words which don’t look even sligh is made  believable. If  to use and yammi passage of Lorem Ipsum, you need to be sure there isn’t by pioneer designer anything embarrassing hidden in the middle of text.</p>	
+							<p class="image-text-text">Tentang Kita</p>	
 						</div>
-					</div>												
-					<div class="row">
-						<div class="col-md-4 col-md-push-8">
-							<img src="<?php echo base_url()?>assets/images/2.jpg" class="img-responsive" alt="Responsive image"/>
-						</div>
-						<div class="col-md-8 col-md-pull-4">
-							<p class="image-text-text">Lorem Ipsum available, but the majority have suffered This alteration in some form, by injected is a humour, or randomised words which don’t look even sligh is made  believable. If  to use and yammi passage of Lorem Ipsum, you need to be sure there isn’t by pioneer designer anything embarrassing hidden in the middle of text.<br><br>
-							Lorem Ipsum available, but the majority have suffered This alteration in some form, by injected is a humour, or randomised words which don’t look even sligh is made  believable. If  to use and yammi passage of Lorem Ipsum, you need to be sure there isn’t by pioneer designer anything embarrassing hidden in the middle of text.</p>	
-						</div>
-					</div>						
+					</div>					
 				</div>
 			</section>				
 		</div>
 
-		<section class="contact">
+		<!-- <section class="contact">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8">
@@ -141,7 +131,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> -->
 
 		<section class="social-contact-icon">
 			<div class="container">
@@ -160,7 +150,7 @@
 							<li class="social-icons">
 								<a href="#" class="icon style2 fa-pinterest"><span class="label">pinterest</span></a>
 							</li>
-							<li class="social-icons">
+							<!-- <li class="social-icons">
 								<a href="#" class="icon style2 fa-stumbleupon"><span class="label">Stumbleupon</span></a>
 							</li>
 							<li class="social-icons">
@@ -183,7 +173,7 @@
 							</li>
 							<li class="social-icons">
 								<a href="#" class="icon style2 fa-vk"><span class="label">vk</span></a>
-							</li>
+							</li> -->
 						</ul>							
 					</div>						
 				</div>

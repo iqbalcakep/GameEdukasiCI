@@ -16,22 +16,13 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/dashboard');
+		$data["komentar"] = $this->db->query("select * from komentar join tipe_soal on komentar.id_tipe = tipe_soal.id_tipe")->result();
+		$this->load->view('admin/dashboard',$data);
 	}
 
 	public function profil()
 	{
 		$this->load->view('admin/profil');
-	}
-
-	public function tabel()
-	{
-		$this->load->view('admin/tabel');
-	}
-
-	public function blank()
-	{
-		$this->load->view('admin/blank');
 	}
 
 }

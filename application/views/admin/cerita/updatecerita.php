@@ -26,11 +26,11 @@
             <div class="container-fluid">
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Tambah Cerita</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Edit Cerita</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Soal</a></li>
-                            <li class="breadcrumb-item active">add Cerita</li>
+                            <li class="breadcrumb-item active">Update Cerita</li>
                         </ol>
                     </div>
                 </div>
@@ -40,15 +40,18 @@
                             <div class="card-block">
                                     <form id="form_soal" class="form-horizontal form-material">
                                     <div class="form-group">
+                                        <?php foreach($cerita as $v){ ?>
+                                                <input type="hidden" name="id_cerita" value="<?= $v->id_cerita;?>">
+
                                                 <label for="example-email" class="col-md-12">Subjek Cerita</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" required placeholder="Subjek" id="subjek" class="form-control form-control-line" name="subjek">
+                                                    <input type="text" required placeholder="Subjek" id="subjek" class="form-control form-control-line" name="subjek" value="<?= $v->tema; ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Cerita</label>
                                                 <div class="col-md-12">
-                                                    <textarea id="isicerita"  name="cerita" rows="5" class="form-control form-control-line"></textarea>
+                                                    <textarea id="isicerita"  name="cerita" rows="5" class="form-control form-control-line"><?= $v->cerita; ?></textarea>
                                              </div><br>
                                             <div class="form-group">
                                                 <div class="col-sm-12">
@@ -56,10 +59,11 @@
                                                 </div>
                                             </div>
                                            </div>
+                                        <?php } ?>
                                         </div>
                                         <div id="pesanbox"></div>
                                     </div>
-                                </form>
+                                    </form>
                             </div>
                         </div>
                     </div>
@@ -85,7 +89,7 @@
                         CKEDITOR.instances[instance].updateElement();
                     }
                     $.ajax({
-                     url:'<?php echo base_url();?>/index.php/Soal/save_cerita',
+                     url:'<?php echo base_url();?>/index.php/Soal/update_cerita',
                      type:"post",
                      data:new FormData(this),
                      processData:false,

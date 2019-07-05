@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url() ?>assets/admin/images/favicon.png">
-    <title>Admin Kuis Online - Cerita</title>
+    <title>Admin Kuis Online - Tipe</title>
     <link href="<?php echo base_url() ?>assets/admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/colors/blue.css" id="theme" rel="stylesheet">
@@ -26,11 +26,11 @@
             <div class="container-fluid">
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Tambah Cerita</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Tambah Tipe Soal</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Soal</a></li>
-                            <li class="breadcrumb-item active">add Cerita</li>
+                            <li class="breadcrumb-item active">add tipe</li>
                         </ol>
                     </div>
                 </div>
@@ -40,15 +40,24 @@
                             <div class="card-block">
                                     <form id="form_soal" class="form-horizontal form-material">
                                     <div class="form-group">
-                                                <label for="example-email" class="col-md-12">Subjek Cerita</label>
+                                                <label for="example-email" class="col-md-12">Nama tipe</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" required placeholder="Subjek" id="subjek" class="form-control form-control-line" name="subjek">
+                                                    <input type="text" required id="namatipe" class="form-control form-control-line" name="namatipe">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-12">Cerita</label>
+                                                <label for="example-email" class="col-md-12">Metode</label>
                                                 <div class="col-md-12">
-                                                    <textarea id="isicerita"  name="cerita" rows="5" class="form-control form-control-line"></textarea>
+                                                    <select name="metode" required class="form-control">
+                                                        <option value="pg">Pilihan Ganda</option>
+                                                        <option value="isian">Isian</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Deskripsi</label>
+                                                <div class="col-md-12">
+                                                    <textarea id="isitipe" name="deskripsi" rows="5" class="form-control form-control-line"></textarea>
                                              </div><br>
                                             <div class="form-group">
                                                 <div class="col-sm-12">
@@ -78,14 +87,14 @@
     <script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-     CKEDITOR.replace('isicerita');
+     CKEDITOR.replace('isitipe');
             $("#form_soal").submit(function(e){
                 e.preventDefault();
                 for ( instance in CKEDITOR.instances ) {
                         CKEDITOR.instances[instance].updateElement();
                     }
                     $.ajax({
-                     url:'<?php echo base_url();?>/index.php/Soal/save_cerita',
+                     url:'<?php echo base_url();?>/index.php/Tipe/save_tipe',
                      type:"post",
                      data:new FormData(this),
                      processData:false,
@@ -94,7 +103,7 @@
                       success: function(response){
                           if(response==="success"){
                             $("#simpan").hide();
-                            $("#pesanbox").html("<div class='alert alert-"+response+"'><strong>Success!</strong> Cerita Baru Telah Tersimpan</div>");
+                            $("#pesanbox").html("<div class='alert alert-"+response+"'><strong>Success!</strong> Tipe Baru Telah Tersimpan</div>");
                             setTimeout(() => {
                                 location.reload(true);
                             }, 2000);

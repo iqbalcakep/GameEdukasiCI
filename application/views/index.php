@@ -28,15 +28,20 @@
 							<header class="header">
 								<div class="inner">
 									<!-- Logo -->
+
 									<a href="#menu"class="nav-bars">
 										<img src="<?php echo base_url() ?>assets/images/nav_icon.svg" class="img-responsive" alt="Collapsable Navbar">
 									</a>
-									<a href="index.html" class="logo">
+									<a href="<?php echo base_url() ?>" class="logo">
 										<span class="symbol">
 											<img src="<?php echo base_url() ?>assets/images/logo2.png" alt="Title" />
 										</span>
-										<span class="title">Kuis Online<br>(<span id="namaSess"><?= $nama; ?></span>)<a href="<?= base_url()?>/index.php/Home/destroy">X Reset</a></span>
+										<span class="title">Kuis Online
+											<br><span id="namaSess"><?= $nama; ?></span>
+										</span>
+										<a href="<?= base_url()?>/index.php/Home/destroy">Logout</a>
 									</a>
+									
 								</div>
 							</header>
 							<!-- Menu -->
@@ -45,7 +50,7 @@
 								<ul>
 									<li><a href="<?php echo base_url() ?>">Home</a></li>
 									<li><a href="<?php echo base_url() ?>index.php/about">About Us</a></li>
-									<li><a href="<?php echo base_url() ?>index.php/login">Login</a></li>
+									<!-- <li><a href="<?php echo base_url() ?>index.php/login">Login</a></li> -->
 								</ul>
 							</nav>
 						</div>

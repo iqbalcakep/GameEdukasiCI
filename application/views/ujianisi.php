@@ -43,7 +43,7 @@
                 <ul>
                   <li><a href="<?php echo base_url() ?>">Home</a></li>
                   <li><a href="<?php echo base_url() ?>index.php/about">About Us</a></li>
-                  <li><a href="<?php echo base_url() ?>index.php/login">Login</a></li>
+                  <!-- <li><a href="<?php echo base_url() ?>index.php/login">Login</a></li> -->
                 </ul>
               </nav>
             </div>

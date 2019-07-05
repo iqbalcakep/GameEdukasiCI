@@ -12,6 +12,7 @@
     <link href="<?php echo base_url() ?>assets/admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/datatable/css/jquery.dataTables.min.css">
 
 <![endif]-->
 </head>
@@ -36,37 +37,35 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <div class="col-12">
                         <div class="card">
-                            <div class="card-block bg-info">
-                                <h4 class="text-white card-title">My Contacts</h4>
-                                <h6 class="card-subtitle text-white m-b-0 op-5">Checkout my contacts here</h6>
-                            </div>
                             <div class="card-block">
-                                <div class="message-box contact-box">
-                                    <h2 class="add-ct-btn"><button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
-                                    <div class="message-widget contact-widget">
-                                        <a href="#">
-                                            <div class="user-img"> <img src="<?php echo base_url() ?>assets/admin/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5> <span class="mail-desc">info@wrappixel.com</span></div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="user-img"> <img src="<?php echo base_url() ?>assets/admin/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Sonu Nigam</h5> <span class="mail-desc">pamela1987@gmail.com</span></div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="user-img"> <span class="round">A</span> <span class="profile-status away pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Arijit Sinh</h5> <span class="mail-desc">cruise1298.fiplip@gmail.com</span></div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="user-img"> <img src="<?php echo base_url() ?>assets/admin/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5> <span class="mail-desc">kat@gmail.com</span></div>
-                                        </a>
-                                    </div>
+                                <div class="table-responsive">
+                                    <h2>Daftar Komentar</h2>
+                                    <table class="table" id="example">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tipe Soal</th>
+                                                <th>Nama</th>
+                                                <th>Kelas</th>
+                                                <th>Komentar</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <?php $no=1; foreach ($komentar as $data) : ?>
+                                            <tr>
+                                                <td><?php echo $no ?></td>
+                                                <td><?php echo $data->tipe ?></td>
+                                                <td><?php echo $data->nama ?></td>
+                                                <td><?php echo $data->kelas ?></td>
+                                                <td><?php echo $data->komentar ?></td>
+                                            </tr>
+                                        <?php $no++; endforeach; ?>
+                                        </tbody>
+
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +82,13 @@
     <script src="<?php echo base_url() ?>assets/admin/js/sidebarmenu.js"></script>
     <script src="<?php echo base_url() ?>assets/admin/js/custom.min.js"></script>
     <script src="<?php echo base_url() ?>assets/admin/js/dashboard1.js"></script>
+    <script type="text/javascript" language="javascript" src="<?php echo base_url() ?>assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+    </script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url() ?>assets/admin/images/favicon.png">
-    <title>Admin Kuis Online - BANK SOAL</title>
+    <title>Admin Kuis Online - Cerita</title>
     <link href="<?php echo base_url() ?>assets/admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/colors/blue.css" id="theme" rel="stylesheet">
@@ -26,10 +26,10 @@
             <div class="container-fluid">
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">BANK SOAL</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Daftar CERITA</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">SOAL</li>
+                            <li class="breadcrumb-item active">CERITA</li>
                         </ol>
                     </div>
                 </div>
@@ -37,48 +37,31 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-block">
-                                <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#settingModal">
-                                    Setting Soal</a>
-                                <a href="<?= base_url() ?>/index.php/Soal/add" class="btn btn-success btn-rounded mb-4">
-                                    Tambah Soal</a>
+                                <a href="<?= base_url() ?>/index.php/soal/addCerita" class="btn btn-success btn-rounded mb-4">
+                                    Tambah Cerita</a>
                                 <div class="table-responsive">
                                     <table class="table" id="example">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
+                                                <th>Nomor</th>
+                                                <th>Subjek Cerita</th>
                                                 <th>Cerita</th>
-                                                <th>Tipe</th>
-                                                <th>Video</th>
-                                                <th>Gambar</th>
-                                                <th>Text</th>
-                                                <th>Pilihan A</th>
-                                                <th>Pilihan B</th>
-                                                <th>Pilihan C</th>
-                                                <th>Pilihan D</th>
-                                                <th>Jawaban</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                        <?php $no=1; foreach ($soal as $data) : ?>
+                                        <?php $no=1; foreach ($cerita as $data) : ?>
                                             <tr>
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $data->tema ?></td>
-                                                <td><?php echo $data->tipe ?></td>
-                                                <td><?php echo $data->video ?></td>
-                                                <td><?php echo $data->gambar ?></td>
-                                                <td><?php echo $data->text ?></td>
-                                                <td><?php echo $data->a ?></td>
-                                                <td><?php echo $data->b ?></td>
-                                                <td><?php echo $data->c ?></td>
-                                                <td><?php echo $data->d ?></td>
-                                                <td><?php echo $data->jawaban ?></td>
+                                                <td><?php echo $data->cerita ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url('index.php/Soal/delete/'.$data->id_soal) ?>" class="btn btn-danger btn-rounded mb-4" style="color: white">Delete</a>
+                                                    <a href="<?php echo base_url('index.php/Cerita/update/'.$data->id_cerita) ?> " class="btn btn-info btn-rounded mb-4" style="color: white" >Update</a><br>
+                                                    <a href="<?php echo base_url('index.php/Cerita/delete/'.$data->id_cerita) ?>" class="btn btn-danger btn-rounded mb-4" style="color: white">Delete</a>
                                                 </td>
                                             </tr>
-                                        <?php $no++; endforeach ?>
+                                        <?php $no++; endforeach; ?>
                                         </tbody>
 
                                     </table>
@@ -91,32 +74,6 @@
             <footer class="footer"> © 2019 kuis online </footer>
         </div>
     </div>
-
-
-    <div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Setting Soal</h4>
-                </div>
-                <form id="frmSubmit" action="<?php echo base_url() ?>index.php/soal/updateSetting" method="post">
-                <div class="modal-body mx-3">
-                    <?php foreach($setting as $v){ ?>
-                    <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email"><?= $v->tipe; ?></label>
-                    <input type="number" value="<?= $v->jumlah; ?>" id="<?= $v->id_setting; ?>" name="<?= $v->id_setting; ?>" class="form-control validate">
-                    </div>
-                    <?php } ?>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="submit" class="btn btn-default">Terapkan</button>
-                </div>
-                </div>
-                <div id="pesanbox"></div>
-                </form>
-            </div>
-        </div>
 
     <script src="<?php echo base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>assets/admin/plugins/bootstrap/js/bootstrap.min.js"></script>

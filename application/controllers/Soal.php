@@ -18,7 +18,7 @@ class Soal extends CI_Controller {
 	public function index()
 	{
 		$data["setting"] = $this->db->query("select * from setting inner join tipe_soal on setting.id_tipe = tipe_soal.id_tipe ")->result();
-		$data["soal"] = $this->db->query("select * from soal")->result();
+		$data["soal"] = $this->db->query("select * from soal inner join cerita on soal.id_cerita = cerita.id_cerita join tipe_soal on soal.id_tipe = tipe_soal.id_tipe")->result();
 		$this->load->view('admin/soal/index',$data);
 	}
 
@@ -113,6 +113,19 @@ class Soal extends CI_Controller {
 			echo "success";
 	}
 
+	public function update_cerita(){
+
+		$id = $this->input->post('id_cerita');
+		
+		$data = array(
+			"tema" => $this->input->post('subjek'),
+			"cerita" => $this->input->post('cerita')
+		);
+
+		$this->soal_model->update_cerita($data,$id);
+		echo "success";
+	}
+
 	public function pilihMetode($id){
 		$data = $this->db->query("select * from tipe_soal where id_tipe = $id")->result();
 		echo json_encode($data);
@@ -125,7 +138,7 @@ class Soal extends CI_Controller {
 			$jml = $this->input->post($i);
 			$this->db->query("update setting set jumlah = '$jml' where id_setting = $id ");
 		}
-		echo "success";
+		redirect('/soal','refresh');
 	}
 
 
@@ -136,6 +149,12 @@ class Soal extends CI_Controller {
 
 	public function addCerita(){
 		$this->load->view('admin/soal/addcerita');
+	}
+
+	public function delete($id)
+	{
+		$this->soal_model->delete_soal($id);
+		redirect('soal','refresh');
 	}
 
 }

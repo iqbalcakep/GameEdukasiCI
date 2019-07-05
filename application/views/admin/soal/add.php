@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url() ?>assets/admin/images/favicon.png">
-    <title>Admin Kuis Online - Profil</title>
+    <title>Admin Kuis Online - Soal</title>
     <link href="<?php echo base_url() ?>assets/admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/admin/css/colors/blue.css" id="theme" rel="stylesheet">
@@ -63,7 +63,7 @@
                                             <div id="cerita_all" class="form-group">
                                                 <label class="col-sm-12">Subjek Cerita</label>
                                                 <div class="col-sm-12">
-                                                    <select required id="cerita" onchange="pilih_cerita()" class="form-control form-control-line">
+                                                    <select required id="cerita" onchange="pilih_cerita()" class="form-control form-control-line" name="id_cerita">
                                                         <option>Pilih Cerita</option>
                                                     </select>
                                                     <div id="isi_cerita">
