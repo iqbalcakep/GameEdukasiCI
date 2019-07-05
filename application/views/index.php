@@ -91,7 +91,8 @@
 													<h2 class="popup-head"><?= $v->tipe;?></h2>
 												</div>
 												<div>
-													<p class="popup-parapraph"><?= $v->deskripsi;?></p>
+													<p class="popup-parapraph"><?= $v->deskripsi;?></p><br/>
+													<a href="<?= base_url()?>/index.php/Ujian/tipe/<?= $v->tipe?>" class="btn btn-success">Mulai</a>
 												</div>
 											</div>
 										</div>

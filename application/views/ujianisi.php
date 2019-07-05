@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <?php $sesData = $this->session->userdata('datadiri');
       $nama = $sesData["nama"];
+      $kelas = $sesData["kelas"];
 ?>
-<!DOCTYPE html>
 <html>
    <head>
       <title>Ujian Online</title>
@@ -16,17 +16,6 @@
       <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/magnific-popup.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/styleujian.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/main.css">
-    
-    <script type="text/javascript">
-    	$(document).ready(function() {
-        $('label').click(function() {
-            $('label').removeClass('worngans');
-            $(this).addClass('worngans');
-        });
-      });
-    </script>
-   
-    
    </head>
    <body >
     <section class="head" id="header">
@@ -63,27 +52,65 @@
       </div>
     </section>
       <div class="container">
+   
+       <div id="pagess">
+       <?php 
+       shuffle($soal);
+       $no = 1;
+       foreach($soal as $d){ ?>
+          <div class="kumpulansoal">   
          <div class="scp-quizzes-main">
           <div class="scp-quizzes-data">
-            <h3>1. Isian </h3>
-              
-              <span class="gambar"><img src="<?php echo base_url() ?>/assets/images/1.jpg" class="img-responsive"></span>
-              <span class="video">
+        <input type="hidden" value="<?= $d->jawaban?>" id="kunci<?= $d->id_soal?>">
+        <input type="hidden" value="<?= $d->id_tipe; ?>" id="tipe_soal">
+      
+            <h3>Soal <?= $no; ?>.</h3>
+              <span class="gambar" <?php if($d->gambar=="null"){?> style="display:none" <?php }else{} ?>>
+              <img src="<?php echo base_url() ?>/assets/file/<?= $d->gambar; ?>" class="img-responsive"></span>
+              <span class="video"  <?php if($d->video=="null"){?> style="display:none" <?php }else{} ?>>
                 <video controls>
-                <source src="<?php echo base_url() ?>/assets/video/as.mov" type="video/mp4" class="img-responsive">
+                <source src="<?php echo base_url() ?>/assets/file/<?= $d->video ?>" type="video/mp4" class="img-responsive">
                 <!-- <embed src="<?php echo base_url() ?>/assets/video/as.mov" class="img-responsive"></span> -->
                 </video>
-              <h4 class="pertanyaan">Ini Pertanyaannya, apakah iqbal cakep?</h4>
               </span>
-
+              <h4 class="pertanyaan" <?php if($d->text=="" or $d->text=="null"){?> style="display:none" <?php } ?>><?= $d->text; ?></h4>
               <div class="form-group">
                 <label for="comment">Jawaban : </label>
-                <textarea class="form-control" rows="5" id="comment" placeholder="Masukkan Jawaban"></textarea>
+                <textarea class="form-control" rows="5" id="jawabansisi<?= $d->id_soal;?>" placeholder="Masukkan Jawaban"></textarea>
               </div>
-            </div>
+           </div>
+           <button type="button" onclick="konfirmasi(event,<?= $d->id_soal;?>)" class="btn btn-success" id="konfirmasi<?= $d->id_soal;?>" clas="btn">Konfirmasi</button>
+           <button type="button" onclick="next(event,<?= $d->id_soal;?>)" style="display:none;" class="btn btn-success" id="next<?= $d->id_soal;?>" clas="btn">Soal Selanjutnya</button>
+           </div>
           </div>
+          <?php $no++; } ?>
+        </div>
+        <div id="selesai" style="display:none">
+        <center>
+                <h1>SKOR ANDA </h1>
+              <h2 id="skor">0</h2>
+              <br><br>
+              <div id="bagiansaran">
+              <div class="form-group">
+                <label for="comment">Saran Anda : </label>
+                <textarea class="form-control" rows="5" id="saran" placeholder="Masukkan Saran"></textarea>
+              </div>
+              <button type="button" id="saranSend" clas="btn btn-default">Kirim Saran</button>
+                </div>
+              <div style="display:none" id="hasilsaran">
+              <div class="alert alert-success">
+                <strong>Success!</strong> Saran Telah Tersimpan
+              </div>
+              <a href="<?= base_url()?>/index.php/">Kembali Ke Home</a> | <a href="javascript:window.location.reload(true)">Kuis Kembali</a>
+              </div>
+              <br><br>
+
+        </center>
+        </div>
+
       </div>
       
+
        <section class="footer">   
       <footer>
         <div class="container">
@@ -122,12 +149,11 @@
         </div>
       </div>
     </div>
-
-
     <script src="<?php echo base_url() ?>assets/js/jquery-3.1.0.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/jquery.magnific-popup.min.js"></script> 
     <script src="<?php echo base_url() ?>assets/js/script.js"></script>
+    <script src="<?php echo base_url()?>assets/js/jquery.paginate.js"></script>
 
     <!--  ===== Scroll to Top ====  -->
       <script>
@@ -141,12 +167,57 @@
       }
     </script>
 
+<!-- <script type="text/javascript">
+    	$(document).ready(function() {
+        $('label').click(function() {
+            $('label').removeClass('worngans');
+            $(this).addClass('worngans');
+        });
+      });
+    </script>
+    -->
+
     <script type="text/javascript">
+    var total_soal = "<?php echo count($soal) ?>";
+    var penilaian = Number(100) / Number(total_soal);
     $(document).ready(function(){
+
+      $('div#pagess').paginate({
+        scope: $('div.kumpulansoal'), // targets all div elements
+        perPage: 1
+      });
       var nama = "<?php echo $nama; ?>"
       if(nama==="" || nama === "undefined"){
         $("#setupModal").modal('show');
       }
+      //break
+
+      $("#saranSend").click(function(e){
+         e.preventDefault();
+        var saran=$("#saran").val();
+        if(saran===""){
+          alert("Saran Tidak Boleh Kosong");
+        }else{
+          var nama = "<?= $nama; ?>"
+          var kelas = "<?= $kelas;?>"
+          var id_tipe=$("#tipe_soal").val();
+          $.ajax({
+            url:"<?= base_url() ?>/index.php/Ujian/kirimkomentar",
+            type:"POST",
+            data:{nama:nama,kelas:kelas,id_tipe:id_tipe,komentar:saran},
+            dataType:"json",
+            success:function(data){
+              $("#bagiansaran").hide();
+              $("#hasilsaran").show();
+            }
+          })
+          
+
+        }
+
+
+      })
+
       $("#formAdd").submit(function(e){
         e.preventDefault();
         $.ajax({
@@ -166,6 +237,38 @@
       })
     });
 
+     //break
+     next=(e,id_soal)=>{
+        e.preventDefault();
+        if($('div#pagess').data('paginate').switchPage('next')){
+
+        }else{
+          $("#pagess").hide();
+          $("#selesai").show();
+        }
+        
+      }
+
+      //break
+      konfirmasi=(e,id_soal)=>{
+        e.preventDefault();
+        var jawaban = $("#kunci"+id_soal).val();
+        let jawabanpilihan = $("#jawabansisi"+id_soal).val();
+        console.log(jawabanpilihan);
+        var kunci = jawaban.split(/,/g);
+        for(i in kunci){
+        if(kunci[i].toLowerCase()===jawabanpilihan.toLowerCase()){
+            var skorlama = $("#skor").text();
+            var tambah = Number(skorlama) + Number(penilaian);
+            $("#skor").text(tambah);
+        }
+      }
+
+      $("#jawabansisi"+id_soal).prop('disabled', true);
+        $("#konfirmasi"+id_soal).hide();
+       $("#next"+id_soal).show();
+        
+      }
     </script>
     </body>
   </html>
