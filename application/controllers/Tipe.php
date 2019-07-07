@@ -28,6 +28,9 @@ class Tipe extends CI_Controller {
 			"deskripsi" => $this->input->post('deskripsi')
 		);
 		$this->soal_model->save_tipe($data);
+		$tipe = $this->input->post('namatipe');
+		$id = $this->db->query("select id_tipe from tipe_soal where tipe = '$tipe' ")->row();
+		$this->db->query("insert into setting set id_tipe = $id->id_tipe,jumlah = 1");
 			echo "success";
 	}
 

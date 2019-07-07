@@ -154,6 +154,7 @@
     <script src="<?php echo base_url() ?>assets/js/jquery.magnific-popup.min.js"></script> 
     <script src="<?php echo base_url() ?>assets/js/script.js"></script>
     <script src="<?php echo base_url()?>assets/js/jquery.paginate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script> 
 
     <!--  ===== Scroll to Top ====  -->
       <script>
@@ -260,7 +261,10 @@
         if(kunci[i].toLowerCase()===jawabanpilihan.toLowerCase()){
             var skorlama = $("#skor").text();
             var tambah = Number(skorlama) + Number(penilaian);
+            swal("SELAMAT", "JAWABAN ANDA BENAR!", "success");
             $("#skor").text(tambah);
+        }else{
+          swal("SAYANG SEKALI", "JAWABAN ANDA SALAH!", "error");
         }
       }
 

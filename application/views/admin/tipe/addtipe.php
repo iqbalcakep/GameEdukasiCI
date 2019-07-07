@@ -101,6 +101,7 @@
                      contentType:false,
                      cache:false,
                       success: function(response){
+                          console.log(response);
                           if(response==="success"){
                             $("#simpan").hide();
                             $("#pesanbox").html("<div class='alert alert-"+response+"'><strong>Success!</strong> Tipe Baru Telah Tersimpan</div>");

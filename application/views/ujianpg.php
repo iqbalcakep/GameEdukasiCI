@@ -163,6 +163,7 @@
     <script src="<?php echo base_url() ?>assets/js/jquery.magnific-popup.min.js"></script> 
     <script src="<?php echo base_url() ?>assets/js/script.js"></script>
     <script src="<?php echo base_url()?>assets/js/jquery.paginate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script> 
 
     <!--  ===== Scroll to Top ====  -->
       <script>
@@ -269,6 +270,9 @@
             var skorlama = $("#skor").text();
             var tambah = Number(skorlama) + Number(penilaian);
             $("#skor").text(tambah);
+            swal("SELAMAT", "JAWABAN ANDA BENAR!", "success");
+        }else{
+          swal("SAYANG SEKALI", "JAWABAN ANDA SALAH!", "error");
         }
 
           for(i in pilihan){
