@@ -46,7 +46,6 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Cerita</th>
                                                 <th>Tipe</th>
                                                 <th>Video</th>
                                                 <th>Gambar</th>
@@ -64,7 +63,6 @@
                                         <?php $no=1; foreach ($soal as $data) : ?>
                                             <tr>
                                                 <td><?php echo $no ?></td>
-                                                <td><?php echo $data->tema ?></td>
                                                 <td><?php echo $data->tipe ?></td>
                                                 <td><?php echo $data->video ?></td>
                                                 <td><?php echo $data->gambar ?></td>
